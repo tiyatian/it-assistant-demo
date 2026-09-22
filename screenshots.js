@@ -83,6 +83,14 @@ async function sendScreenshot(text, attachment) {
 
 async function analyzeScreenshot(shot, userText = '') {
   if (actionLocked || state.ticket) return;
+  const localRuntime = location.protocol === 'file:' || ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+  if (!localRuntime) {
+    shot.error = '在线演示未启用自动图片识别，截图仅作为本地工单附件保留';
+    state.awaitingImageDescription = true;
+    addMessage('assistant', `<p>截图已收到并保留为附件。<strong>在线演示暂不支持自动读取图片</strong>，不会上传到第三方识别服务。</p><p>请把图片中的错误提示输入对话，我会继续排查；转人工时会保留截图。完整本机版支持 macOS 截图文字识别。</p>${imageActions}`);
+    if (userText.trim()) await routeScreenshotText(userText.trim());
+    return;
+  }
   actionLocked = true;
   $$('[data-upload]').forEach(button => { button.disabled = true; });
   showTyping('正在读取截图中的文字和错误提示…');
