@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="小启 IT 助手——企业智能 IT 服务入口 Demo" />
+    <meta name="theme-color" content="#506f8f" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='7' fill='%23506f8f'/%3E%3Cpath d='m12 5-5 3v7l5 3 5-3V8l-5-3Z' fill='none' stroke='white' stroke-width='1.7'/%3E%3Cpath d='m9.5 11.5 1.6 1.6 3.4-3.4' fill='none' stroke='white' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <title>小启 IT 助手 · Demo</title>
+    <link rel="stylesheet" href="./styles.css?v=screenshot-1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="侧边导航">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3 4.5 7.25v9.5L12 21l7.5-4.25v-9.5L12 3Z"/><path d="m8.6 11 2.15 2.15 4.7-4.7"/></svg>
+          </div>
+          <div>
+            <strong>小启 IT</strong>
+            <span>智能服务助手</span>
+          </div>
+        </div>
+
+        <button class="new-chat-button" id="newChatButton" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          新建服务会话
+        </button>
+
+        <nav class="side-nav" aria-label="主要导航">
+          <button class="nav-item active" type="button" data-nav="assistant">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/><path d="M8 9h8M8 13h5"/></svg>
+            <span>IT 助手</span>
+          </button>
+          <button class="nav-item" type="button" data-nav="tickets">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+            <span>我的工单</span>
+            <span class="nav-badge" id="ticketCount">0</span>
+          </button>
+        </nav>
+
+        <div class="history-block">
+          <div class="section-label">最近会话</div>
+          <button class="history-item" id="historyItem" type="button">
+            <span class="history-dot"></span>
+            <span class="history-copy">
+              <strong id="historyTitle">还没有服务记录</strong>
+              <small id="historyTime">发起问题后会自动保存</small>
+            </span>
+          </button>
+        </div>
+
+        <div class="sidebar-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <p><strong>隐私提醒</strong><br />请勿发送密码、Token 或密钥。</p>
+        </div>
+        <div class="sidebar-user">
+          <div class="avatar">林</div>
+          <div><strong>林晓晨</strong><span>产品中心 · 上海</span></div>
+          <span class="online-dot" title="已登录"></span>
+        </div>
+      </aside>
+
+      <main class="main" id="main">
+        <header class="topbar">
+          <button class="icon-button mobile-menu" id="menuButton" type="button" aria-label="打开导航" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <div class="topbar-title">
+            <div class="mobile-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3 4.5 7.25v9.5L12 21l7.5-4.25v-9.5L12 3Z"/><path d="m8.6 11 2.15 2.15 4.7-4.7"/></svg>
+            </div>
+            <div>
+              <strong>智能 IT 服务</strong>
+              <span><i></i> 服务正常</span>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="demo-pill">交互 Demo</span>
+            <button class="icon-button" id="resetButton" type="button" aria-label="重置 Demo" title="重置 Demo">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="workspace" id="welcomeView" aria-labelledby="welcomeTitle">
+          <div class="welcome-content">
+            <div class="welcome-heading">
+              <div class="welcome-assistant">
+                <span class="welcome-assistant-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></svg></span>
+                <span>小启 IT 助手</span>
+                <span class="welcome-availability"><i></i>随时为你服务</span>
+              </div>
+              <h1 id="welcomeTitle" aria-label="你好，晓晨。IT 问题，一起解决。"><span id="welcomePrefix" aria-hidden="true">你好，晓晨。IT 问题，</span><span id="welcomeEnding" aria-hidden="true">一起解决。</span></h1>
+              <p class="welcome-lead">告诉我遇到了什么，我来协助排查，必要时为你联系 IT 同事。</p>
+            </div>
+
+            <form class="hero-composer" id="heroForm">
+              <div class="attachment-preview hidden" id="heroAttachment" aria-live="polite"></div>
+              <label class="sr-only" for="heroInput">描述你的 IT 问题</label>
+              <textarea id="heroInput" maxlength="500" rows="2" placeholder="描述你遇到的 IT 问题，我来帮你解决"></textarea>
+              <div class="composer-footer">
+                <button class="icon-button upload-button" type="button" data-upload="hero" aria-label="上传问题截图" title="上传截图（PNG、JPEG、WebP，最大 5MB）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button>
+                <span class="composer-hint"><kbd>Enter</kbd> 发送 · <kbd>Shift</kbd> + <kbd>Enter</kbd> 换行</span>
+                <button class="send-button" id="heroSend" type="submit" aria-label="发送问题" disabled>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg>
+                </button>
+              </div>
+            </form>
+
+            <div class="suggestions" aria-label="示例问题">
+              <button type="button" data-prompt="VPN 一直提示认证失败怎么办？">
+                <span class="suggestion-icon violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8 8 0 0 0-8 8v3a3 3 0 0 0 3 3h1v-6H4M12 3a8 8 0 0 1 8 8v3a3 3 0 0 1-3 3h-1v-6h4"/></svg></span>
+                <span><strong>VPN 认证失败</strong><small>智能排障演示</small></span>
+                <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+              <button type="button" data-prompt="我的电脑突然连不上公司网络">
+                <span class="suggestion-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5a11 11 0 0 1 14 0M8 16a6 6 0 0 1 8 0M11 19.5a1.5 1.5 0 0 1 2 0"/></svg></span>
+                <span><strong>连不上公司网络</strong><small>多轮定位演示</small></span>
+                <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+              <button type="button" data-prompt="我想申请 Figma 专业版软件">
+                <span class="suggestion-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4zM8 4h8v3H8z"/><path d="M8 12h8M8 16h5"/></svg></span>
+                <span><strong>申请办公软件</strong><small>转人工闭环演示</small></span>
+                <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+
+            <div class="trust-row">
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 7 3v5c0 4.7-2.9 8-7 10-4.1-2-7-5.3-7-10V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg> 企业知识有据可查</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 7v5l3 2"/></svg> 平均 5 秒内响应</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-3.2-6.4M20 4v6h-6"/></svg> 刷新后可继续</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="chat-view hidden" id="chatView" aria-label="IT 服务会话">
+          <div class="chat-main">
+            <div class="conversation-header">
+              <div>
+                <div class="conversation-meta"><span id="conversationStatus">正在处理</span><span id="conversationId">会话 ID</span></div>
+                <h1 id="conversationTitle">IT 服务会话</h1>
+              </div>
+              <button class="text-button" type="button" data-action="handoff">转人工</button>
+            </div>
+            <div class="messages" id="messages" role="log" aria-live="polite" aria-label="对话消息"></div>
+            <form class="chat-composer" id="chatForm">
+              <div class="attachment-preview hidden" id="chatAttachment" aria-live="polite"></div>
+              <button class="icon-button upload-button" type="button" data-upload="chat" aria-label="上传问题截图" title="上传截图（PNG、JPEG、WebP，最大 5MB）"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg></button>
+              <label class="sr-only" for="chatInput">回复小启 IT 助手</label>
+              <textarea id="chatInput" maxlength="500" rows="1" placeholder="回复小启，或描述新的现象…"></textarea>
+              <button class="send-button" id="chatSend" type="submit" aria-label="发送回复" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></svg>
+              </button>
+              <span class="input-count" id="inputCount">0 / 500</span>
+            </form>
+            <p class="ai-disclaimer">AI 可能会出错。企业制度类回答仅依据已授权知识，关键操作请谨慎确认。</p>
+          </div>
+
+          <aside class="context-panel" aria-label="会话处理进度">
+            <div class="context-heading">
+              <span>处理进度</span>
+              <span class="live-chip"><i></i> 实时</span>
+            </div>
+            <ol class="progress-list" id="progressList">
+              <li class="done" data-step="understand"><span><svg viewBox="0 0 24 24"><path d="m7 12 3 3 7-7"/></svg></span><div><strong>理解问题</strong><small>已识别 IT 服务意图</small></div></li>
+              <li class="active" data-step="clarify"><span>2</span><div><strong>补充信息</strong><small>确认关键环境</small></div></li>
+              <li data-step="knowledge"><span>3</span><div><strong>知识与排障</strong><small>匹配企业知识</small></div></li>
+              <li data-step="result"><span>4</span><div><strong>处理结果</strong><small>自助解决或转人工</small></div></li>
+            </ol>
+            <div class="context-card">
+              <div class="context-card-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg> 已获取信息</div>
+              <dl id="contextFacts"><div><dt>提问人</dt><dd>林晓晨</dd></div><div><dt>设备</dt><dd>待确认</dd></div><div><dt>状态</dt><dd>分析中</dd></div></dl>
+            </div>
+            <div class="context-card source-card">
+              <div class="context-card-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h11v16H6a2 2 0 0 0-2 2V5Z"/><path d="M4 19a2 2 0 0 1 2-2h14v4H6a2 2 0 0 1-2-2Z"/></svg> 知识策略</div>
+              <p>只使用当前账号有权限查看、且仍然有效的 IT 官方知识。</p>
+            </div>
+          </aside>
+        </section>
+        <section class="tickets-view hidden" id="ticketsView" aria-labelledby="ticketsTitle">
+          <div class="tickets-heading">
+            <div><p class="eyebrow">IT 服务记录</p><h1 id="ticketsTitle" tabindex="-1">我的工单</h1><p>查看已提交的问题，跟进最新处理进度。</p></div>
+            <span class="demo-pill">演示数据</span>
+          </div>
+          <p class="tickets-count" id="ticketsSummary" aria-live="polite"></p>
+          <div id="ticketList"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="sidebar-scrim hidden" id="sidebarScrim"></div>
+
+    <dialog id="editDialog" class="edit-dialog">
+      <form method="dialog" id="editTicketForm">
+        <div class="dialog-header">
+          <div><p class="eyebrow">提交前确认</p><h2>修改工单内容</h2></div>
+          <button class="icon-button" value="cancel" aria-label="关闭修改窗口"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <label for="ticketTitleInput">问题标题</label>
+        <input id="ticketTitleInput" name="title" maxlength="60" required />
+        <label for="ticketSummaryInput">问题摘要</label>
+        <textarea id="ticketSummaryInput" name="summary" rows="5" maxlength="500" required></textarea>
+        <label for="ticketUrgencyInput">紧急程度</label>
+        <select id="ticketUrgencyInput" name="urgency"><option value="一般">一般 · 不影响核心工作</option><option value="紧急">紧急 · 已影响当前工作</option></select>
+        <div class="dialog-actions"><button class="button-secondary" value="cancel">取消</button><button class="button-primary" id="saveTicketButton" value="default">保存修改</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="ticketDetailDialog" class="edit-dialog ticket-detail-dialog" aria-labelledby="ticketDetailTitle">
+      <div class="ticket-detail-content">
+        <div class="dialog-header"><div><p class="eyebrow">工单详情</p><h2 id="ticketDetailTitle">处理进度</h2></div><button class="icon-button" id="closeTicketDetail" type="button" aria-label="关闭工单详情"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+        <div id="ticketDetailBody" aria-live="polite"></div>
+        <div class="dialog-actions"><button class="button-primary" id="refreshTicketDetail" type="button">刷新进度</button></div>
+      </div>
+    </dialog>
+    <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+    <input type="file" id="screenshotInput" class="sr-only" accept="image/png,image/jpeg,image/webp" tabindex="-1" aria-label="选择问题截图" />
+    <dialog id="screenshotDialog" class="edit-dialog screenshot-dialog" aria-labelledby="screenshotTitle"><div class="ticket-detail-content"><div class="dialog-header"><h2 id="screenshotTitle">问题截图</h2><button type="button" class="icon-button" id="closeScreenshot" aria-label="关闭截图"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div><img id="fullScreenshot" alt="用户上传的问题截图" /></div></dialog>
+    <script src="./app.js?v=screenshot-1"></script>
+    <script src="./screenshots.js?v=screenshot-1"></script>
+  </body>
+</html>
